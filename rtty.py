@@ -108,7 +108,8 @@ def add_start_and_stops_bits(message_array_repeated):
 
     return message_with_start_and_stop_bits
 #%%
-message_string = "HELLO 123 WORLD!"
+# message_string = "HELLO 123 WORLD!"
+message_string = message
 message_integer = string_to_integer(message_string)
 message_bitarray = integer_to_bitarray(message_integer)
 message_array = bitarray_to_array(message_bitarray)
@@ -116,3 +117,25 @@ message_array_repeated = array_repeat(message_array, 2)
 message_with_start_and_stop = add_start_and_stops_bits(message_array_repeated)
 
 #%%
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+#%%
+chars = range(1)
+
+b = []
+message_to_print = ""
+for i in chars:
+    b += message_with_start_and_stop[i]
+    message_to_print += repr(message_string[i])
+
+n = np.arange(len(b))
+plt.step(n, b)
+
+plt.xlabel('n')
+plt.ylabel('b[n]')
+plt.title(message_to_print)
+plt.grid(True)
+plt.show()
+# %%
